@@ -15,8 +15,8 @@ pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((320, 240), 0, 32)
 BCK = pygame.image.load("images/night.png")
 
-#font = pygame.font.Font("fonts/jersey.ttf", 52)
-font = pygame.font.SysFont("arial", 52)
+font = pygame.font.Font("fonts/amatic.ttf", 124)
+#font = pygame.font.SysFont("arial", 64)
 #label = font.render("22:24", True, font_color)
 #DISPLAYSURF.blit(label, (100, 100))
 
@@ -28,7 +28,7 @@ while True:
             now = datetime.datetime.now(pytz.timezone('America/Santiago'))
             label = font.render("{:02d}:{:02d}:{:02d}".format(now.hour, now.minute, now.second), True, font_color)
             DISPLAYSURF.blit(BCK, (0, 0))
-            DISPLAYSURF.blit(label, (25, 100))
+            DISPLAYSURF.blit(label, (30, 50))
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
