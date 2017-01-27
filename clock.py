@@ -25,16 +25,16 @@ DISPLAYSURF = pygame.display.set_mode((320, 240), 0, 32)
 BCK = pygame.image.load("images/night.png")
 
 font = pygame.font.Font("fonts/amatic.ttf", 124)
-weather_font = pygame.font.Font("fonts/amatic.ttf", 32)
+weather_font = pygame.font.Font("fonts/amatic.ttf", 42)
 
 def draw_clock():
     now = datetime.datetime.now(pytz.timezone('America/Santiago'))
     label = font.render("{:02d}:{:02d}:{:02d}".format(now.hour, now.minute, now.second), True, font_color)
     DISPLAYSURF.blit(BCK, (0, 0))
     DISPLAYSURF.blit(label, (30, 50))
-    DISPLAYSURF.blit(weather_image, (0, 25))
+    DISPLAYSURF.blit(weather_image, (40, 5))
 
-    weather_label = weather_font.render("{} C".format(current_wather), True, font_color)
+    weather_label = weather_font.render("{0:g} C".format(round(current_wather)), True, font_color)
     DISPLAYSURF.blit(weather_label, (5, 5))
 
 # run the game loop
