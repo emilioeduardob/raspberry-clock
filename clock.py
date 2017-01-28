@@ -2,8 +2,13 @@ import pygame, sys, os
 import datetime
 import pytz
 import weather
+try:
+    import buttons
+except:
+    print "Not running in Raspberry"
 
 from pygame.locals import *
+from time import sleep
 os.environ["SDL_FBDEV"] = "/dev/fb1"
 
 font_color = (224, 224, 224)
@@ -54,3 +59,4 @@ while True:
                 pygame.quit()
                 sys.exit()
     pygame.display.update()
+    sleep(0.1)
