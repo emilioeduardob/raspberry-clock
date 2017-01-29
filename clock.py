@@ -15,7 +15,7 @@ font_color = (224, 224, 224)
 TICK_EVENT = USEREVENT + 1
 pygame.time.set_timer(TICK_EVENT, 1000)
 WEATHER_EVENT = TICK_EVENT + 1
-pygame.time.set_timer(WEATHER_EVENT, 60 * 60 * 1000)
+pygame.time.set_timer(WEATHER_EVENT, 15 * 60 * 1000)
 
 current_weather = weather.Weather('asuncion')
 current_weather.refresh()
