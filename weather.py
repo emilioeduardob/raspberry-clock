@@ -13,17 +13,24 @@ except ImportError:
 class Weather:
     def __init__(self, city):
         self.city = city
+        self.data = {}
 
     def refresh(self):
-        url = "http://api.openweathermap.org/data/2.5/weather?q={}&APPID={}&units=metric"
-        response = urllib2.urlopen(url.format(self.city, settings.WEATHER_APIKEY))
-        data = json.load(response)
-        self.data = {'temp': data['main']['temp'], 'icon': data["weather"][0]["icon"]}
+        try:
+            url = "http://api.openweathermap.org/data/2.5/weather?q={}&APPID={}&units=metric"
+            response = urllib2.urlopen(url.format(self.city, settings.WEATHER_APIKEY))
+            data = json.load(response)
+            self.data = {'temp': data['main']['temp'], 'icon': data["weather"][0]["icon"]}
+        except:
+            print("Couldn't get Weather info")
 
     def get_temp(self):
-        return self.data['temp']
+        return self.data.get('temp', 0)
 
-    def get_icon_io(self):
-        url = "http://openweathermap.org/img/w/{}.png"
-        image_str = urlopen(url.format(self.data['icon'])).read()
-        return io.BytesIO(image_str)
+    def get_icon_image(self):
+        try:
+            url = "http://openweathermap.org/img/w/{}.png"
+            image_str = urlopen(url.format(self.data['icon'])).read()
+            return pg.image.load(io.BytesIO(image_str))
+        except:
+            return None

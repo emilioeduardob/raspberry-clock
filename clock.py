@@ -19,7 +19,7 @@ pygame.time.set_timer(WEATHER_EVENT, 60 * 60 * 1000)
 
 current_weather = weather.Weather('asuncion')
 current_weather.refresh()
-weather_image = pygame.image.load(current_weather.get_icon_io())
+weather_image = current_weather.get_icon_image()
 
 pygame.init()
 pygame.mouse.set_visible(False)
@@ -36,7 +36,8 @@ def draw_clock():
     label = font.render("{:02d}:{:02d}:{:02d}".format(now.hour, now.minute, now.second), True, font_color)
     DISPLAYSURF.blit(BCK, (0, 0))
     DISPLAYSURF.blit(label, (30, 50))
-    DISPLAYSURF.blit(weather_image, (40, 5))
+    if weather_image is not None:
+        DISPLAYSURF.blit(weather_image, (40, 5))
 
     temp = round(current_weather.get_temp())
     weather_label = weather_font.render("{0:g} C".format(temp), True, font_color)
@@ -47,7 +48,7 @@ while True:
     for event in pygame.event.get():
         if event.type == WEATHER_EVENT:
             current_weather.refresh()
-            weather_image = pygame.image.load(weather.get_icon_image())
+            weather_image = weather.get_icon_image()
         if event.type == TICK_EVENT:
             draw_clock()
         if event.type == QUIT:
