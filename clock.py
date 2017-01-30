@@ -48,7 +48,7 @@ while True:
     for event in pygame.event.get():
         if event.type == WEATHER_EVENT:
             current_weather.refresh()
-            weather_image = weather.get_icon_image()
+            weather_image = current_weather.get_icon_image()
         if event.type == TICK_EVENT:
             draw_clock()
         if event.type == QUIT:
