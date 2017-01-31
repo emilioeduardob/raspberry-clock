@@ -28,8 +28,8 @@ pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((320, 240), 0, 32)
 BCK = pygame.image.load("images/night.png")
 
-font = pygame.font.Font("fonts/amatic.ttf", 124)
-weather_font = pygame.font.Font("fonts/amatic.ttf", 42)
+font = pygame.font.Font("fonts/exit.ttf", 124)
+weather_font = pygame.font.Font("fonts/exit.ttf", 42)
 
 def draw_clock():
     now = datetime.datetime.now(pytz.timezone('America/Santiago'))
