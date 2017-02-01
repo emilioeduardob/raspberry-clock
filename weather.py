@@ -31,6 +31,8 @@ class Weather:
         try:
             url = "http://openweathermap.org/img/w/{}.png"
             image_str = urlopen(url.format(self.data['icon'])).read()
-            return pg.image.load(io.BytesIO(image_str))
+            picture = pg.image.load(io.BytesIO(image_str))
+            picture = pg.transform.scale(picture, (80, 80))
+            return picture
         except:
             return None

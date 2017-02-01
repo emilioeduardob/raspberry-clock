@@ -28,8 +28,8 @@ pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((320, 240), 0, 32)
 BCK = pygame.image.load("images/night.png")
 
-font = pygame.font.Font("fonts/exit.ttf", 80)
-weather_font = pygame.font.Font("fonts/exit.ttf", 28)
+font = pygame.font.Font("fonts/digital-mono.ttf", 120)
+weather_font = pygame.font.Font("fonts/digital-mono.ttf", 38)
 
 def draw_clock():
     now = datetime.datetime.now(pytz.timezone('America/Santiago'))
@@ -39,13 +39,13 @@ def draw_clock():
         pattern = "{:02d}:{:02d}"
     label = font.render(pattern.format(now.hour, now.minute), True, font_color)
     DISPLAYSURF.blit(BCK, (0, 0))
-    DISPLAYSURF.blit(label, (30, 80))
+    DISPLAYSURF.blit(label, (20, 80))
     if weather_image is not None:
-        DISPLAYSURF.blit(weather_image, (40, 5))
+        DISPLAYSURF.blit(weather_image, (0, 0))
 
     temp = round(current_weather.get_temp())
     weather_label = weather_font.render("{0:g} C".format(temp), True, font_color)
-    DISPLAYSURF.blit(weather_label, (5, 5))
+    DISPLAYSURF.blit(weather_label, (84, 20))
 
 # run the game loop
 while True:
