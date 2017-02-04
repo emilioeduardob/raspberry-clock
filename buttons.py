@@ -6,20 +6,10 @@
 #4 #R (side) Button for GPIO4
 #17 #Trigon (power) Button for GPIO4
 # 27 Screen
-import RPi.GPIO as GPIO
+from gpiozero import Button
 import lcd
 
 LCD = lcd.Lcd()
 
-print '-- Initializing buttons'
-GPIO.setmode(GPIO.BCM)
-
-def handle_button(button):
-    if button == 5:
-        LCD.toggle()
-
-buttons = [5, 23, 22, 24, 4, 17]
-
-for button in buttons:
-    GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.add_event_detect(button, GPIO.RISING, callback=handle_button, bouncetime=100)
+x_button = Button(5)
+x_button.when_pressed = LCD.toggle
