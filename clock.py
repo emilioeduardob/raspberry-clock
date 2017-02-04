@@ -46,8 +46,9 @@ class Clock():
             pattern = "{:02d}:{:02d}"
         label = self.clock_font.render(pattern.format(now.hour, now.minute), True, self.FONT_COLOR)
         self.surface.blit(label, (20, 80))
-        if self.weather_image is not None:
-            self.surface.blit(self.weather_image, (0, 0))
+        img = self.weather.get_icon_image()
+        if img is not None:
+            self.surface.blit(img, (0, 0))
 
         temp = round(self.weather.get_temp())
         weather_label = self.weather_font.render("{0:g} C".format(temp), True, self.FONT_COLOR)
