@@ -27,6 +27,7 @@ class Weather:
                 'sunrise': data["sys"]["sunrise"],
                 'sunset': data["sys"]["sunset"]
             }
+            self.refresh_image()
         except:
             print("Couldn't get Weather info")
 
@@ -42,11 +43,14 @@ class Weather:
         return self.data.get('temp', 0)
 
     def get_icon_image(self):
+        return self.current_icon
+
+    def refresh_image(self):
         try:
             url = "http://openweathermap.org/img/w/{}.png"
             image_str = urlopen(url.format(self.data['icon'])).read()
             picture = pg.image.load(io.BytesIO(image_str))
             picture = pg.transform.scale(picture, (80, 80))
-            return picture
+            self.current_icon = picture
         except:
-            return None
+            self.current_icon =  None

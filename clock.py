@@ -36,15 +36,18 @@ class Clock():
     def is_day(self):
         now = datetime.now()
         return (now > self.weather.sunrise() and now < self.weather.sunset())
-
-    def draw_clock(self):
-        self.set_wallpaper()
+    
+    def current_time(self):
         now = datetime.now(pytz.timezone('America/Santiago'))
         if (now.second % 2 == 0):
             pattern = "{:02d} {:02d}"
         else:
             pattern = "{:02d}:{:02d}"
-        label = self.clock_font.render(pattern.format(now.hour, now.minute), True, self.FONT_COLOR)
+        return pattern.format(now.hour, now.minute)
+
+    def draw_clock(self):
+        self.set_wallpaper()
+        label = self.clock_font.render(self.current_time(), True, self.FONT_COLOR)
         self.surface.blit(label, (20, 80))
         img = self.weather.get_icon_image()
         if img is not None:
