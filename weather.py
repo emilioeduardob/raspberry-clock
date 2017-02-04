@@ -3,6 +3,7 @@ import json
 import settings
 import io
 import pygame as pg
+from datetime import datetime
 try:
     # Python2
     from urllib2 import urlopen
@@ -20,9 +21,22 @@ class Weather:
             url = "http://api.openweathermap.org/data/2.5/weather?q={}&APPID={}&units=metric"
             response = urllib2.urlopen(url.format(self.city, settings.WEATHER_APIKEY))
             data = json.load(response)
-            self.data = {'temp': data['main']['temp'], 'icon': data["weather"][0]["icon"]}
+            self.data = {
+                'temp': data['main']['temp'],
+                'icon': data["weather"][0]["icon"],
+                'sunrise': data["sys"]["sunrise"],
+                'sunset': data["sys"]["sunset"]
+            }
         except:
             print("Couldn't get Weather info")
+
+    def sunset(self):
+        time = self.data.get('sunset', 0)
+        return datetime.fromtimestamp(int(time))
+
+    def sunrise(self):
+        time = self.data.get('sunrise', 0)
+        return datetime.fromtimestamp(int(time))
 
     def get_temp(self):
         return self.data.get('temp', 0)
