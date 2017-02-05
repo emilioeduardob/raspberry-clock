@@ -11,6 +11,7 @@ except ImportError:
     # Python3
     from urllib.request import urlopen
 
+
 class Weather:
     def __init__(self, city):
         self.city = city
@@ -53,4 +54,4 @@ class Weather:
             picture = pg.transform.scale(picture, (80, 80))
             self.current_icon = picture
         except:
-            self.current_icon =  None
+            self.current_icon = None

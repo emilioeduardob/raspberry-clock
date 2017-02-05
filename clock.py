@@ -1,11 +1,10 @@
-import pygame, os
+import pygame
+import os
 from datetime import datetime
 import pytz
-import weather
 
-from pygame.locals import *
-from time import sleep
 os.environ["SDL_FBDEV"] = "/dev/fb1"
+
 
 class Clock():
     FONT_COLOR = (224, 224, 224)
@@ -36,7 +35,7 @@ class Clock():
     def is_day(self):
         now = datetime.now()
         return (now > self.weather.sunrise() and now < self.weather.sunset())
-    
+
     def current_time(self):
         now = datetime.now(pytz.timezone('America/Santiago'))
         if (now.second % 2 == 0):
